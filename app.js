@@ -1,26 +1,45 @@
-let val;
+// DEFINE UI VARIABLES
+const form = document.querySelector('#task-form');
+const taskList = document.querySelector('.collection');
+const clearBtn = document.querySelector('.clear-tasks');
+const filter = document.querySelector('#filter');
+const taskInput = document.querySelector('#task');
 
-val = document;
-val = document.all.length;
-val = document.head;
-val = document.body;
-val = document.doctype;
-// val = document.domain;
-// val = document.URL;
-val = document.contentType;
+// Event listners
+form.addEventListener('submit', addTask)
 
-val = document.forms[0].id;
-val = document.forms[0].textContent;
-val = document.forms[0].method;
-val = document.forms[0].actions;
+// Add Task
+function addTask(e){
+ if(taskInput.value === ''){
+  alert('Add Task')
+ }
 
+ // create a list item li
+ const li = document.createElement('li');
 
+ // Add class to the list item
+ li.className = 'collection-item';
 
-val = document.links;
-let valArr = Array.from(val);
+ // Create a text node and append to li
+ li.appendChild(document.createTextNode(taskInput.value));
 
-valArr.forEach(link => {
-  console.log(link);
-});
+ // Create a new link element
+ const link = document.createElement('a');
 
-console.log(val);
+ // Add class and text  
+ link.className = 'delete-item secondary-content';
+ link.innerHTML = '<i class="fa fa-remove"></i>';
+
+ // Append the link to the task item
+ li.appendChild(link);
+
+ // Append the task item to the task collection
+ taskList.appendChild(li);
+
+ //clear the input field
+ taskInput.value = '';
+
+ e.preventDefault();
+}
+
+//
